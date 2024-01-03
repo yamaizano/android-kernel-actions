@@ -196,7 +196,9 @@ else
     exit 100
 fi
 
-cd "$workdir"/"$kernel_path"; git submodule update --init --recursive; git submodule update --remote --merge || exit 127
+cd "$workdir"/"$kernel_path" || exit 127
+git submodule update --init --recursive
+git submodule update --recursive --remote
 start_time="$(date +%s)"
 date="$(date +%d%m%Y-%I%M)"
 tag="$(git branch | sed 's/*\ //g')"
